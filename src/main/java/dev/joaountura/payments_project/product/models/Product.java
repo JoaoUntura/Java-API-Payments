@@ -1,0 +1,25 @@
+package dev.joaountura.payments_project.product.models;
+
+import dev.joaountura.payments_project.payment.models.Payment;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Entity
+@Data
+@Builder
+@NoArgsConstructor // construtor sem argumentos para o JPA
+@AllArgsConstructor // construtor completo para o Builder
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private BigDecimal value;
+    private String name;
+
+}
