@@ -5,11 +5,13 @@ import jakarta.validation.constraints.NotEmpty;
 
 
 import java.util.List;
+import java.util.UUID;
 
 public record PaymentCreateDTO (
         @NotBlank String custumer,
         @NotBlank String email,
-        @NotEmpty List<Long> productIdList
+        @NotEmpty List<Long> productIdList,
+        @NotEmpty UUID receiverID
 )
 {
 }

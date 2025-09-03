@@ -1,6 +1,7 @@
 package dev.joaountura.payments_project.payment.models;
 
 import dev.joaountura.payments_project.product.models.Product;
+import dev.joaountura.payments_project.receiver.models.Receiver;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
@@ -24,7 +25,15 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String custumer;
+    @Column(unique = true)
+    @Builder.Default
+    private UUID externalID = UUID.randomUUID();
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private Receiver receiver;
+
+    private String customer;
 
     private String email;
 

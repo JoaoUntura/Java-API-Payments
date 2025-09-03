@@ -1,5 +1,6 @@
 package dev.joaountura.payments_project.PaymentsTest;
 
+import dev.joaountura.payments_project.payment.models.PaymentRabbitDTO;
 import dev.joaountura.payments_project.payment.services.PaymentProducer;
 
 import dev.joaountura.payments_project.payment.models.Payment;
@@ -15,7 +16,7 @@ public class RabbitTest {
 
 
     @Test
-    void testSendPayment(Payment payment) {
+    void testSendPayment(PaymentRabbitDTO payment) {
         paymentProducer.sendPayment(payment);
         System.out.println("Mensagem enviada para a fila!");
     }
