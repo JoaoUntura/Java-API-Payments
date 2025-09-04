@@ -60,7 +60,7 @@ public class PaymentServices {
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
             @Override
             public void afterCommit() {
-                paymentProducer.sendPayment(paymentMapper.paymentRabbitDTO(newPayment));
+                paymentProducer.sendPayment(paymentMapper.paymentRabbitMapper(newPayment));
             }
         });
 

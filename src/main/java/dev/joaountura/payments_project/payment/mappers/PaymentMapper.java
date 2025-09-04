@@ -21,8 +21,8 @@ public class PaymentMapper {
                 .customer(paymentCreateDTO.customer())
                 .email(paymentCreateDTO.email())
                 .value(totalPayment)
-                .receiver(receiver)
                 .productList(products)
+                .receiver(receiver)
                 .build();
 
     }
@@ -34,7 +34,6 @@ public class PaymentMapper {
                 .date(payment.getDate())
                 .email(payment.getEmail())
                 .customer(payment.getCustomer())
-                .receiver(payment.getReceiver() != null ? payment.getReceiver().getExternalID() : null)
                 .status(payment.getStatus())
                 .value(payment.getValue())
                 .build()
@@ -42,19 +41,16 @@ public class PaymentMapper {
 
     }
 
-    public PaymentRabbitDTO paymentRabbitDTO(Payment payment){
+    public PaymentRabbitDTO paymentRabbitMapper(Payment payment){
         return PaymentRabbitDTO.builder()
+                .receiver(payment.getReceiver().getExternalID())
                 .id(payment.getExternalID())
+                .value(payment.getValue())
+                .status(payment.getStatus())
                 .date(payment.getDate())
                 .email(payment.getEmail())
-                .custumer(payment.getCustomer())
-                .receiver(payment.getReceiver() != null ? payment.getReceiver().getExternalID() : null)
-                .status(payment.getStatus())
-                .value(payment.getValue())
                 .productNames(payment.getProductList().stream().map(Product::getName).toList())
                 .build();
     }
-
-
 
 }
