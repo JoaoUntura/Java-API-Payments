@@ -12,8 +12,8 @@ import java.math.BigDecimal;
 @Entity
 @Data
 @Builder
-@NoArgsConstructor // construtor sem argumentos para o JPA
-@AllArgsConstructor // construtor completo para o Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id

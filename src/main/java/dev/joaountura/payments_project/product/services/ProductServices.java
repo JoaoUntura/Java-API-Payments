@@ -3,6 +3,9 @@ package dev.joaountura.payments_project.product.services;
 import dev.joaountura.payments_project.product.repository.ProductRepository;
 import dev.joaountura.payments_project.product.models.Product;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,13 +20,14 @@ public class ProductServices {
         this.productRepository = productRepository;
     }
 
-
+    @CacheEvict(value = "products", key="'allProducts'")
     public Product createProduct(Product product){
 
         return productRepository.save(product);
 
     }
 
+    @Cacheable(value = "products", key = "'allProducts'")
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }

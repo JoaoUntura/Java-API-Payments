@@ -18,7 +18,7 @@ public class PaymentMapper {
     public Payment paymentCreateMapper(PaymentCreateDTO paymentCreateDTO, BigDecimal totalPayment, List<Product> products, Receiver receiver){
 
         return Payment.builder()
-                .customer(paymentCreateDTO.custumer())
+                .customer(paymentCreateDTO.customer())
                 .email(paymentCreateDTO.email())
                 .value(totalPayment)
                 .receiver(receiver)
@@ -33,7 +33,7 @@ public class PaymentMapper {
                 .id(payment.getExternalID())
                 .date(payment.getDate())
                 .email(payment.getEmail())
-                .custumer(payment.getCustomer())
+                .customer(payment.getCustomer())
                 .receiver(payment.getReceiver() != null ? payment.getReceiver().getExternalID() : null)
                 .status(payment.getStatus())
                 .value(payment.getValue())
