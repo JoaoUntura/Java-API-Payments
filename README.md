@@ -19,11 +19,46 @@ Funcionalidades principais:
 - Registro de **produtos** e seus **valores**  
 - Geração de **QR Codes Pix dinâmicos** vinculados ao receiver e ao produto escolhido  
 
+## 🏗 Arquitetura / Infraestrutura
 
+```mermaid
+flowchart TD
+    subgraph Dev["💻 Desenvolvimento"]
+        IDE[IDE - IntelliJ]
+        GitHub[GitHub]
+        IDE --> GitHub
+    end
 
-## Diagrama da Infra
+    subgraph CI/CD["⚙️ Pipeline CI/CD"]
+        Tests[✔️ Build & Tests]
+        Docker[🐳 Docker Build]
+        DockerHub[Docker Hub]
+        SSH[🔑 SSH Deploy]
+        GitHub --> Tests --> Docker --> DockerHub --> SSH
+    end
 
-![Arquitetura do Sistema](arquitetura.png)
+    subgraph Oracle["☁️ Oracle Cloud -  Docker Compose"]
+        Java[☕ Spring Boot API]
+        Postgres[(🐘 PostgreSQL)]
+        Redis[(🟥 Redis)]
+        Rabbit[(📨 RabbitMQ)]
+        Nginx[(🌐 Nginx Reverse Proxy)]
+        Prometheus[(📊 Prometheus)]
+        Grafana[(📈 Grafana)]
+
+        Java --> Postgres
+        Java --> Redis
+        Java --> Rabbit
+
+        Java --> Prometheus
+        Prometheus --> Grafana
+
+        Nginx --> Java
+    end
+
+    SSH --> Oracle
+```
+
 ## Aprendizados
 
 O que você aprendeu construindo esse projeto? 
