@@ -23,7 +23,7 @@ Funcionalidades principais:
 
 ## Diagrama da Infra
 
-![Arquitetura do Sistema](docs/arquitetura.png)
+![Arquitetura do Sistema](arquitetura.png)
 ## Aprendizados
 
 O que você aprendeu construindo esse projeto? 
