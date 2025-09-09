@@ -7,6 +7,7 @@ O projeto inclui **RabbitMQ, Redis, Prometheus, Grafana, Docker Compose** e pipe
 
 ## Acessos
 -   [Documentação API](https://payment.meagende.site/swagger-ui/index.html)
+ -   [Repositóiro com a Infra completa](https://github.com/JoaoUntura/dockercompose_payments)
  - [API](https://payment.meagende.site/)
  - [Grafana](http://163.176.132.56:3000/) ->  admin / admin
 
