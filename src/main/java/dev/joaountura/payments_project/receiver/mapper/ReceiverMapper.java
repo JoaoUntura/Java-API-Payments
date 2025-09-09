@@ -14,7 +14,7 @@ public class ReceiverMapper {
 
     public  Receiver toReceiverCreate(ReceiverCreateDTO receiverCreateDTO){
 
-        return Receiver.builder().name(receiverCreateDTO.name()).city(receiverCreateDTO.city()).key(receiverCreateDTO.key()).build();
+        return Receiver.builder().name(receiverCreateDTO.name()).city(receiverCreateDTO.city()).pixKey(receiverCreateDTO.pixKey()).build();
 
     }
 
@@ -27,7 +27,7 @@ public class ReceiverMapper {
                        .id(receiver.getExternalID())
                        .city(receiver.getCity())
                        .name(receiver.getName())
-                       .key(receiver.getKey())
+                       .pixKey(receiver.getPixKey())
                        .build()).toList();
 
 

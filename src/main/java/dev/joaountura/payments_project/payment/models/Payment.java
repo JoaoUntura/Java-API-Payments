@@ -37,6 +37,7 @@ public class Payment {
 
     private String email;
 
+    @Column(name = "\"value\"")
     private BigDecimal value;
 
     @Builder.Default

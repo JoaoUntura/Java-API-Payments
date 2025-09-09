@@ -30,7 +30,7 @@ public class Receiver {
 
     private String city;
 
-    private String key;
+    private String pixKey;
 
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Payment> paymentList;

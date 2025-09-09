@@ -31,10 +31,11 @@ public class PaymentMapper {
         return payments.stream().map((Payment payment) -> PaymentGetDTO
                 .builder()
                 .id(payment.getExternalID())
-                .date(payment.getDate())
+                 .date(payment.getDate())
                 .email(payment.getEmail())
                 .customer(payment.getCustomer())
                 .status(payment.getStatus())
+                .receiver( payment.getReceiver() != null ? payment.getReceiver().getExternalID() : null)
                 .value(payment.getValue())
                 .build()
         ).toList();

@@ -9,7 +9,7 @@ public record ReceiverGetDTO(
         UUID id,
         String name,
         String city,
-        String key
+        String pixKey
 
 ) {
 }

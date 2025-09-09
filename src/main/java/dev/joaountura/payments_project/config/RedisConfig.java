@@ -10,9 +10,15 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+
+import org.springframework.data.redis.connection.RedisConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -22,8 +28,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@EnableCaching
+
 public class RedisConfig {
+
+
+    @Bean
+    @Profile("prod")
+    public RedisConfiguration defaultRedisConfig() {
+        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
+        config.setHostName("redis");
+        config.setPort(6379);
+
+        return config;
+    }
     @Bean
     public ObjectMapper objectMapper() {
         return JsonMapper.builder()

@@ -11,6 +11,6 @@ public record ReceiverCreateDTO(
 
         @NotBlank  String city,
 
-        @NotBlank String key
+        @NotBlank String pixKey
 ) {
 }

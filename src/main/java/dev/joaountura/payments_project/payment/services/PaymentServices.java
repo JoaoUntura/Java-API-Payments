@@ -54,7 +54,7 @@ public class PaymentServices {
         Payment newPayment = paymentRepository.save(paymentMapper.paymentCreateMapper(paymentCreateDTO, totalPayment, products, receiver));
 
 
-        byte[] qrCodePix = pixService.gerarQRCode(totalPayment, receiver.getKey(), receiver.getName(), receiver.getCity());
+        byte[] qrCodePix = pixService.gerarQRCode(totalPayment, receiver.getPixKey(), receiver.getName(), receiver.getCity());
 
 
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {

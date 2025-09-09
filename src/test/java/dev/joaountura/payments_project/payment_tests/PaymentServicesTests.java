@@ -1,6 +1,7 @@
 package dev.joaountura.payments_project.payment_tests;
 
 import com.google.zxing.WriterException;
+import dev.joaountura.payments_project.Mocks;
 import dev.joaountura.payments_project.payment.PaymentRepository;
 import dev.joaountura.payments_project.payment.mappers.PaymentMapper;
 import dev.joaountura.payments_project.payment.models.Payment;
@@ -75,12 +76,10 @@ public class PaymentServicesTests {
             mocked.when(TransactionSynchronizationManager::isSynchronizationActive).thenReturn(true);
             mocked.when(() -> TransactionSynchronizationManager.registerSynchronization(Mockito.any())).then(invocation -> null);
 
-            PaymentCreateDTO paymentCreateMock = new PaymentCreateDTO("Teste Customer", "email@gmail.com", List.of(1L, 2L), UUID.randomUUID());
-            List<Product> productsMock = List.of(Product.builder().id(1L).name("TestProduct").value(BigDecimal.valueOf(2.99)).build()
-                    , Product.builder().id(2L).name("TestProduct2").value(BigDecimal.valueOf(3.99)).build());
-            Receiver receiverMock = Receiver.builder().id(1L).name("Receiver Test").key("12345678910").city("Test City").externalID(paymentCreateMock.receiverID()).build();
-
-            Payment paymentMock = Payment.builder().id(1L).email(paymentCreateMock.email()).date(LocalDateTime.now()).receiver(receiverMock).productList(productsMock).customer(paymentCreateMock.customer()).value(BigDecimal.valueOf(6.98)).externalID(UUID.randomUUID()).build();
+            PaymentCreateDTO paymentCreateMock = Mocks.paymentCreateDTOMock();
+            List<Product> productsMock = Mocks.productsMock();
+            Receiver receiverMock = Mocks.receiverMock();
+            Payment paymentMock = Mocks.paymentMock();
 
             Mockito.when(productServices.getByIdList(paymentCreateMock.productIdList())).thenReturn(productsMock);
             Mockito.when(receiverServices.getByExternalID(paymentCreateMock.receiverID())).thenReturn(receiverMock);
